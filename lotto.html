@@ -1,0 +1,44 @@
+<html>
+<head runat="server">
+<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="lotto-1.0.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	var histCnt = 0;		//HISTORY COUNT
+
+	//BTN : RUN
+	$("#btnRun").click(function(){
+		var lottoImg = [];
+		var numArr = Lotto.getNumbers();
+		for( var n in numArr ){
+			lottoImg.push("<img src='ball/ball" +numArr[n]+ ".gif'>&nbsp;&nbsp;");
+		}
+		
+		//DRAW IMAGES
+		histCnt++;
+		$("#txtResult").html( lottoImg.join("") );
+		$("#txtHistory").html( histCnt + " : " + $("#txtResult").html() + "<br/>" + $("#txtHistory").html() );
+	});
+
+	//BTN : CLEAR
+	$("#btnClear").click(function(){
+		histCnt = 0;
+		$("#txtHistory").html( "" );
+	});
+});
+</script>
+</head>
+<body>
+
+	<div style="border:1px solid #1f9e8b; width:300px; text-align:center; color:#1f9e8b;">LOTTO</div>
+	<div id="txtResult" style="border:1px solid #1f9e8b; width:300px; height:30px; text-align:center; color:#1f9e8b;"></div>
+	<table><tr>
+		<td><div id="btnClear" style="width:150px; height:30px; color:#146559; cursor:pointer;" align="center">CLEAR</div></td>
+		<td><div id="btnRun" style="width:150px; height:30px; color:#146559; cursor:pointer;" align="center">RUN</div></td>
+	</tr></table>
+	<div style="border:1px solid #1f9e8b; width:300px; text-align:center; color:#1f9e8b;">HISTORY</div>
+	<div id="txtHistory" style="border:1px solid #1f9e8b; width:300px; text-align:center; color:#1f9e8b;"></div>
+
+</body>
+</html>
